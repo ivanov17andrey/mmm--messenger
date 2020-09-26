@@ -6,7 +6,9 @@ const mongoose = require('mongoose')
 const app = express()
 const server = http.createServer(app)
 
-const PORT = config.get('port') || 3001
+const uri = process.env.MONGODB_URI
+const PORT = process.env.PORT || 3001
+// const PORT = config.get('port') || 3001
 
 app.use(express.json({ extended: true }))
 
@@ -16,7 +18,8 @@ const socket = require('./socket')(server)
 
 async function start() {
   try {
-    await mongoose.connect(config.get('MONGODB_URI'), {
+    // await mongoose.connect(config.get('MONGODB_URI'), {
+    await mongoose.connect(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
