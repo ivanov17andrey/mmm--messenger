@@ -1,0 +1,14 @@
+@import "~materialize-css/sass/components/color-variables.scss";
+$primary-color: color("purple", "darken-2") !default;
+$secondary-color: color("cyan", "darken-1") !default;
+@import "~materialize-css/sass/materialize";
+@import '~material-icons/iconfont/material-icons.css';
+
+body {
+  margin: 0;
+  font-family: 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
