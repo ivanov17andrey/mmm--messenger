@@ -1,14 +1,13 @@
-@import "~materialize-css/sass/components/color-variables.scss";
-$primary-color: color("purple", "darken-2") !default;
-$secondary-color: color("blue-grey", "lighten-2") !default;
-@import "~materialize-css/sass/materialize";
+@import '~materialize-css/sass/components/color-variables.scss';
+$primary-color: color('purple', 'darken-2') !default;
+$secondary-color: color('blue-grey', 'lighten-2') !default;
+@import '~materialize-css/sass/materialize';
 @import '~material-icons/iconfont/material-icons.css';
 
 body {
   margin: 0;
-  font-family: 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -20,7 +19,7 @@ body {
 
 .dots {
   filter: url(#gooeyness);
-	padding: 15px;
+  padding: 15px;
 }
 
 .dot {
@@ -29,7 +28,7 @@ body {
   display: inline-block;
   margin-right: 10px;
   width: 16px;
-	height: 16px;
+  height: 16px;
 }
 
 .dot:first-child {
