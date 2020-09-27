@@ -5,7 +5,7 @@ export const Tabs = ({ rooms, setRoom }) => {
     <ul className="tabs" style={classes.tabs}>
       {rooms.map((r, i) => (
         <li className="tab col s3" onClick={() => setRoom(r)} key={i}>
-          <a href="">{r}</a>
+          <a href="/">{r}</a>
         </li>
       ))}
     </ul>

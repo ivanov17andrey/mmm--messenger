@@ -11,7 +11,7 @@ export const NavBar = () => {
   return (
     <nav>
       <div className="nav-wrapper">
-        <a href="#" className="brand-logo">
+        <a style={classes.title} href="/">
           mmm--messenger
         </a>
         <ul id="nav-mobile" className="right">
@@ -22,12 +22,12 @@ export const NavBar = () => {
               </a>
             </li>
           )}
-          {!auth.isAuthenticated && location.pathname == '/login' && (
+          {!auth.isAuthenticated && location.pathname === '/login' && (
             <li>
               <Link to="/register">Зарегистрироваться</Link>
             </li>
           )}
-          {!auth.isAuthenticated && location.pathname == '/register' && (
+          {!auth.isAuthenticated && location.pathname === '/register' && (
             <li>
               <Link to="/login">Войти</Link>
             </li>
@@ -36,4 +36,11 @@ export const NavBar = () => {
       </div>
     </nav>
   )
+}
+
+const classes = {
+	title: {
+		fontSize: '1.4rem',
+		paddingLeft: '1rem'
+	}
 }

@@ -16,7 +16,7 @@ export const Login = () => {
   useEffect(() => {
     message(error)
     clearError()
-  }, [error, message])
+  }, [error, message, clearError])
 
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value })
@@ -28,24 +28,20 @@ export const Login = () => {
       const data = await request('/api/auth/login', 'POST', {
         email: form.email.trim(),
         password: form.password.trim(),
-			})
+      })
 
       auth.login(data.token, data.userId, data.nickname)
     } catch (err) {}
   }
 
-	if (loading) {
-		return (
-			<Loader />
-		)
-	}
-	
   return (
     <div className="row">
-      <div style={classes.form} className="col s6 offset-s3 center-align">
-        <span style={classes.header}>
-          Авторизация
-        </span>
+      {loading && <Loader />}
+      <div
+        style={classes.form}
+        className="col s10 m6 offset-s1 offset-m3 center-align"
+      >
+        <span style={classes.header}>Авторизация</span>
         <div className="row">
           <div className="input-field col s12">
             <input
@@ -86,10 +82,9 @@ export const Login = () => {
 
 const classes = {
   header: {
-		fontSize: '28px',
+    fontSize: '28px',
   },
   form: {
-    height: '100vh',
     marginTop: '100px',
   },
   button: {

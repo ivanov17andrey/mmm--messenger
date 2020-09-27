@@ -5,15 +5,13 @@ require('dotenv').config()
 const { check, validationResult } = require('express-validator')
 const User = require('../models/User')
 
-
 const router = Router()
 
-// /api/auth/register
 router.post(
   '/register',
   [
-		check('email', 'Некорректный email').isEmail(),
-		check('nickname', 'Введите Имя').isLength({
+    check('email', 'Некорректный email').isEmail(),
+    check('nickname', 'Введите Имя').isLength({
       min: 1,
     }),
     check('password', 'Минимальная длина пароля 6 символов').isLength({
@@ -85,12 +83,15 @@ router.post(
         return res.status(400).json({ message: 'Неверный пароль' })
       }
 
-      const token = jwt.sign({ userId: user.id, nickname: user.nickname }, process.env.jwtSecret, {
-        expiresIn: '1h',
-			})
-			
-			res.json({ token, userId: user.id, nickname: user.nickname})
-			
+      const token = jwt.sign(
+        { userId: user.id, nickname: user.nickname },
+        process.env.jwtSecret,
+        {
+          expiresIn: '1h',
+        }
+      )
+
+      res.json({ token, userId: user.id, nickname: user.nickname })
     } catch (err) {
       res.status(500).json({ message: 'Что-то пошло не так' })
     }

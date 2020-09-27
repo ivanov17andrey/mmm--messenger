@@ -17,7 +17,7 @@ export const Register = () => {
   useEffect(() => {
     message(error)
     clearError()
-  }, [error, message])
+  }, [error, message, clearError])
 
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value })
@@ -30,11 +30,11 @@ export const Register = () => {
         email: form.email.trim(),
         nickname: form.nickname.trim(),
         password: form.password.trim(),
-			})
-			
-			if(data.login) {
-				loginHandler()
-			}
+      })
+
+      if (data.login) {
+        loginHandler()
+      }
     } catch (err) {}
   }
 
@@ -44,24 +44,19 @@ export const Register = () => {
       const data = await request('/api/auth/login', 'POST', {
         email: form.email.trim(),
         password: form.password.trim(),
-			})
+      })
 
       auth.login(data.token, data.userId, data.nickname)
     } catch (err) {}
-	}
-	
-	if (loading) {
-		return (
-			<Loader />
-		)
-	}
+  }
 
   return (
     <div className="row">
-      <div style={classes.form} className="col s6 offset-s3 center-align">
-        <span style={classes.header}>
-          Регистрация
-        </span>
+      <div
+        style={classes.form}
+        className="col s10 m6 offset-s1 offset-m3 center-align"
+      >
+        <span style={classes.header}>Регистрация</span>
         <div className="row">
           <div className="input-field col s12">
             <input
@@ -106,6 +101,7 @@ export const Register = () => {
           </div>
         </div>
       </div>
+      {loading && <Loader />}
     </div>
   )
 }
@@ -115,7 +111,6 @@ const classes = {
     fontSize: '28px',
   },
   form: {
-    height: '100vh',
     marginTop: '100px',
   },
   button: {

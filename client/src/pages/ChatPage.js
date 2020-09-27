@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
-import M from 'materialize-css'
 import { AuthContext } from '../context/AuthContext'
 import {
   initiateSocket,
-	subscribeToChat,
-	downloadHistory,
+  subscribeToChat,
+  downloadHistory,
   switchRoom,
   sendMessage,
 } from '../socket'
 import { MessageContainer } from '../components/MessageContainer'
 import { BottomBar } from '../components/BottomBar'
 import { Tabs } from '../components/Tabs'
+import M from 'materialize-css'
 
 export const ChatPage = () => {
   const auth = useContext(AuthContext)
@@ -29,9 +29,9 @@ export const ChatPage = () => {
   useEffect(() => {
     if (prevRoom && room) {
 			switchRoom(prevRoom, room)
+			setMessage('')
     } else if (room) initiateSocket(auth.token, room)
-    setChat([])
-  }, [room])
+  }, [room, auth.token, prevRoom])
 
   useEffect(() => {
     const tabs = document.querySelector('.tabs')
@@ -39,12 +39,12 @@ export const ChatPage = () => {
     subscribeToChat((err, data) => {
       if (err) return
       setChat((oldChats) => [...oldChats, data])
-		})
-		downloadHistory((err, data) => {
-			if (err) return
-			data = data.reverse()
-			setChat(() => data)
-		})
+    })
+    downloadHistory((err, data) => {
+      if (err) return
+      data = data.reverse()
+      setChat(() => data)
+    })
   }, [])
 
   return (
@@ -79,8 +79,9 @@ const classes = {
     position: 'relative',
     height: '680px',
     marginTop: '2rem',
-    border: '1px solid grey',
-    borderRadius: '.5rem',
+    border: '2px solid grey',
+		borderRadius: '.5rem',
+		boxShadow: '0 0 30px 10px rgba(0, 0, 0, 0.1)',
   },
   messageBox: {
     overflowY: 'scroll',

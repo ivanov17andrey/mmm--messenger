@@ -1,6 +1,5 @@
 const socketioJwt = require('socketio-jwt')
 require('dotenv').config()
-// const config = require('config')
 const Message = require('../models/Message')
 
 module.exports = function (server) {
