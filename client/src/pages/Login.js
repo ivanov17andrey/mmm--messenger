@@ -32,6 +32,12 @@ export const Login = () => {
 
       auth.login(data.token, data.userId, data.nickname)
     } catch (err) {}
+	}
+	
+	const onKeyDownHandler = e => {
+    if (e.keyCode === 13) {
+      loginHandler();
+    }
   }
 
   return (
@@ -41,15 +47,18 @@ export const Login = () => {
         style={classes.form}
         className="col s10 m6 offset-s1 offset-m3 center-align"
       >
-        <span style={classes.header}>Авторизация</span>
+        <h1 style={classes.header} className="blue-grey-text darken-2">Авторизация</h1>
         <div className="row">
           <div className="input-field col s12">
             <input
               id="email"
               name="email"
               type="email"
+							autoFocus
+							autoComplete="off"
               value={form.email}
               onChange={changeHandler}
+							onKeyDown={onKeyDownHandler}
             />
             <label htmlFor="email">Email</label>
           </div>
@@ -58,8 +67,10 @@ export const Login = () => {
               id="password"
               name="password"
               type="password"
+							autoComplete="off"
               value={form.password}
               onChange={changeHandler}
+							onKeyDown={onKeyDownHandler}
             />
             <label htmlFor="password">Password</label>
           </div>
@@ -82,7 +93,8 @@ export const Login = () => {
 
 const classes = {
   header: {
-    fontSize: '28px',
+		fontSize: '30px',
+		marginBottom: '1rem',
   },
   form: {
     marginTop: '100px',

@@ -45,7 +45,7 @@ export const ChatPage = () => {
       data = data.reverse()
       setChat(() => data)
     })
-  }, [])
+	}, [])
 
   return (
     <>

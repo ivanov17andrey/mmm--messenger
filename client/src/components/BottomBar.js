@@ -10,11 +10,17 @@ export const BottomBar = ({
 }) => {
   const auth = useContext(AuthContext)
 
-  const clichHandler = () => {
+  const clickHandler = () => {
     if (message.trim()) {
       sendMessage(room, auth.nickname, message)
       setMessage('')
       setChat((oldChats) => [...oldChats, { nickname: auth.nickname, message }])
+    }
+	}
+	
+	const onKeyDownHandler = e => {
+    if (e.keyCode === 13) {
+      clickHandler();
     }
   }
 
@@ -28,11 +34,12 @@ export const BottomBar = ({
           placeholder="Введите сообщение"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+					onKeyDown={onKeyDownHandler}
         />
         <button
           style={classes.sendButton}
           className="btn waves-effect"
-          onClick={clichHandler}
+          onClick={clickHandler}
         >
           Отправить
           <i className="material-icons right">send</i>
@@ -48,6 +55,7 @@ const classes = {
     alignItems: 'center',
   },
   input: {
+		color: '#455a64',
     display: 'inline-block',
     width: '100%',
     minWidth: '100px',

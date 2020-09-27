@@ -48,6 +48,12 @@ export const Register = () => {
 
       auth.login(data.token, data.userId, data.nickname)
     } catch (err) {}
+	}
+	
+	const onKeyDownHandler = e => {
+    if (e.keyCode === 13) {
+      registerHandler();
+    }
   }
 
   return (
@@ -56,15 +62,18 @@ export const Register = () => {
         style={classes.form}
         className="col s10 m6 offset-s1 offset-m3 center-align"
       >
-        <span style={classes.header}>Регистрация</span>
+        <span style={classes.header} className="blue-grey-text darken-2">Регистрация</span>
         <div className="row">
           <div className="input-field col s12">
             <input
               id="email"
               name="email"
               type="email"
+							autoFocus
+							autoComplete="off"
               value={form.email}
               onChange={changeHandler}
+							onKeyDown={onKeyDownHandler}
             />
             <label htmlFor="email">Email</label>
           </div>
@@ -73,8 +82,10 @@ export const Register = () => {
               id="nickname"
               name="nickname"
               type="text"
+							autoComplete="off"
               value={form.nickname}
               onChange={changeHandler}
+							onKeyDown={onKeyDownHandler}
             />
             <label htmlFor="nickname">Имя</label>
           </div>

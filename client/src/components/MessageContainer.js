@@ -36,7 +36,8 @@ const classes = {
     color: '#7b1fa2',
   },
   message: {
-    fontSize: '1.2rem',
+		fontSize: '1.2rem',
+		color: '#455a64',
     textAlign: 'left',
     margin: '0',
     borderTop: '1px solid #7b1fa2',
