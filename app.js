@@ -12,9 +12,13 @@ const PORT = process.env.PORT || 3001
 
 app.use(express.json({ extended: true }))
 
-app.use(express.static(path.join(__dirname, 'client', 'build')))
+app.use('/', express.static(path.join(__dirname, 'client', 'build')))
 
 app.use('/api/auth', require('./routes/auth.routes'))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'index.html'))
+})
 
 const socket = require('./socket')(server)
 
