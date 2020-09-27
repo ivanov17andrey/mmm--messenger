@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const config = require('config')
+require('dotenv').config()
 const { check, validationResult } = require('express-validator')
 const User = require('../models/User')
 
@@ -85,7 +85,7 @@ router.post(
         return res.status(400).json({ message: 'Неверный пароль' })
       }
 
-      const token = jwt.sign({ userId: user.id, nickname: user.nickname }, config.get('jwtSecret'), {
+      const token = jwt.sign({ userId: user.id, nickname: user.nickname }, process.env.jwtSecret, {
         expiresIn: '1h',
 			})
 			

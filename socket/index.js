@@ -1,5 +1,6 @@
 const socketioJwt = require('socketio-jwt')
-const config = require('config')
+require('dotenv').config()
+// const config = require('config')
 const Message = require('../models/Message')
 
 module.exports = function (server) {
@@ -7,7 +8,7 @@ module.exports = function (server) {
 
   io.use(
     socketioJwt.authorize({
-      secret: config.get('jwtSecret'),
+      secret: process.env.jwtSecret,
       handshake: true,
     })
   )

@@ -4,7 +4,7 @@ import config from '../config'
 let socket
 
 export const initiateSocket = (token, room) => {
-	socket = io(config.production.endpoint, {
+	socket = io(config[process.env.NODE_ENV].endpoint, {
 		query: `token=${token}`
 	})
 
