@@ -22,7 +22,7 @@ export const Loader = () => {
             </filter>
           </defs>
         </svg>
-        <div className="dots">
+        <div style={classes.filter} className="dots">
           <div className="dot mainDot"></div>
           <div className="dot"></div>
           <div className="dot"></div>
@@ -35,6 +35,9 @@ export const Loader = () => {
 }
 
 const classes = {
+	filter: {
+		filter: 'url(#gooeyness)'
+	},
 	wrapper: {
 		position: 'absolute',
 		top: '0',
